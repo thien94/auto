@@ -25,7 +25,7 @@
   
 # To install it, run:
       cd ~
-      git clone https://github.com/jeffsanc/auto.git
+      git clone https://github.com/wang-chen/auto.git
       cd auto
       ./install.sh
 
