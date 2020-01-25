@@ -33,7 +33,8 @@ fi
  
 #Get current using Wi-Fi information 
 # Note: below command works for Indigo and Kinetic
-WLAN_IP=`ifconfig | grep 'inet addr:192.168' | sed 's/^.*addr://g' | sed 's/Bcast:.*$//g'` 
+# WLAN_IP=`ifconfig | grep 'inet addr:192.168' | sed 's/^.*addr://g' | sed 's/Bcast:.*$//g'` 
+WLAN_IP=`hostname -I`
 if [ "$WLAN_IP" = "" ]; then 
 echo -e "\E[1;31;47m!!!!!No Local Network connect!!!!!\E[0m" 
 export ROS_MASTER_URI=http://localhost:11311 
