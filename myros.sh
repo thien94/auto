@@ -5,32 +5,21 @@
 #PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin 
 #export PATH 
 USER_NAME='eee' 
-ROS_USE_ROSBUILD='0'
 ROS_INFO_TIME='0'
-ROS_BUILDWS_NAME='indigo_workspace' 
-#ROS_CATKINWS_NAME='NTU_Research_Group_ROS'
-ROS_CATKINWS_NAME='drones'
+ROS_BUILDWS_NAME='build_ws' 
+ROS_CATKINWS_NAME='catkin_ws'
 ROS_REMOTE_IP='' 
 #ROS_REMOTE_IP='192.168.1.127'
- 
-#Link MasterMind IP Address: 192.168.1.110
-#Link MiniPC: 192.168.1.15 
-#Link NCU MiniPC: 192.168.1.194 
- 
-#==Do not edit below========================================================  
-if [ "$ROS_USE_ROSBUILD" = "1" ]; then 
+
+
+#Setting ROS catkin_make workspace 
+echo -e "\E[1;34mROS_PACKAGE_PATH (CATKIN) is setting.\E[0m" 
+source ~/${ROS_CATKINWS_NAME}/devel/setup.bash 
+
 #Setting ROS rosbuild workspace 
 echo -e "\E[1;34mROS_PACKAGE_PATH (ROSBUILD) is setting.\E[0m" 
 source ~/${ROS_BUILDWS_NAME}/setup.bash 
-export ROS_PACKAGE_PATH=/home/${USER_NAME}/${ROS_BUILDWS_NAME}:${ROS_PACKAGE_PATH} 
- 
-#Add the NTU_Research_Group_ROS workspace 
-#export ROS_PACKAGE_PATH=/home/chencl/NTU_Research_Group_ROS:${ROS_PACKAGE_PATH} 
-else 
-#Setting ROS catkin workspace 
-echo -e "\E[1;34mROS_PACKAGE_PATH (CATKIN) is setting.\E[0m" 
-source ~/${ROS_CATKINWS_NAME}/devel/setup.bash 
-fi 
+
 echo $ROS_PACKAGE_PATH 
 
 #Setting ROS INFO Time in Display
