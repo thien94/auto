@@ -6,6 +6,9 @@
 #PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin 
 #export PATH 
 
+ROS_DISTRO='melodic'               # Set this to your distro, e.g. kinetic or melodic
+source /opt/ros/${ROS_DISTRO}/setup.bash  # Source your ROS distro
+
 ROS_INFO_TIME='0'
 ROS_BUILDWS_NAME='build_ws' 
 ROS_CATKINWS_NAME='catkin_ws'
@@ -18,7 +21,7 @@ source ~/${ROS_CATKINWS_NAME}/devel/setup.bash
 
 #Setting ROS rosbuild workspace 
 echo -e "\E[1;34mROS_PACKAGE_PATH (ROSBUILD) is setting.\E[0m" 
-source ~/${ROS_BUILDWS_NAME}/setup.bash 
+source ~/${ROS_BUILDWS_NAME}/devel/setup.bash 
 
 echo $ROS_PACKAGE_PATH 
 
