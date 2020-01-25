@@ -1,16 +1,16 @@
 #!/bin/bash 
 # This program setting ROS environment 
-# Please keyin {ROS_BUILDWS_NAME}, {USER_NAME} and {ROS_CATKINWS_NAME} string, then edit .bashrc add one line "source ~/myros.sh" 
+# Please keyin {ROS_BUILDWS_NAME}and {ROS_CATKINWS_NAME} string
 # 
+
 #PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin 
 #export PATH 
-USER_NAME='eee' 
+
 ROS_INFO_TIME='0'
 ROS_BUILDWS_NAME='build_ws' 
 ROS_CATKINWS_NAME='catkin_ws'
 ROS_REMOTE_IP='' 
 #ROS_REMOTE_IP='192.168.1.127'
-
 
 #Setting ROS catkin_make workspace 
 echo -e "\E[1;34mROS_PACKAGE_PATH (CATKIN) is setting.\E[0m" 
@@ -32,6 +32,7 @@ echo -e "ROS_INFO_TIME: \E[1;36mINVISIBLE\E[0m"
 fi
  
 #Get current using Wi-Fi information 
+# Note: below command works for Indigo and Kinetic
 WLAN_IP=`ifconfig | grep 'inet addr:192.168' | sed 's/^.*addr://g' | sed 's/Bcast:.*$//g'` 
 if [ "$WLAN_IP" = "" ]; then 
 echo -e "\E[1;31;47m!!!!!No Local Network connect!!!!!\E[0m" 
