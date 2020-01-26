@@ -23,6 +23,10 @@ source ~/${ROS_CATKINWS_NAME}/devel/setup.bash
 echo -e "\E[1;34mROS_PACKAGE_PATH (ROSBUILD) is setting.\E[0m" 
 source ~/${ROS_BUILDWS_NAME}/devel/setup.bash 
 
+#Setting ROS catkin_make workspace 
+echo -e "\E[1;34mROS_PACKAGE_PATH (CATKIN) is setting.\E[0m" 
+source ~/${ROS_CATKINWS_NAME}/devel/setup.bash 
+
 echo $ROS_PACKAGE_PATH 
 
 #Setting ROS INFO Time in Display
