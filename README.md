@@ -5,7 +5,7 @@
 
 # Installation
       cd ~
-      git clone https://github.com/wang-chen/auto.git
+      git clone https://github.com/thien94/auto # original: https://github.com/wang-chen/auto.git
       cd auto
       ./install.sh
       
