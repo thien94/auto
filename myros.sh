@@ -6,7 +6,7 @@
 #PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin 
 #export PATH 
 
-ROS_DISTRO='melodic'               # Set this to your distro, e.g. kinetic or melodic
+ROS_DISTRO='noetic'               # Set this to your distro, e.g. kinetic / melodic / noetic
 source /opt/ros/${ROS_DISTRO}/setup.bash  # Source your ROS distro
 
 ROS_INFO_TIME='0'
