@@ -1,1 +1,21 @@
-SUBSYSTEMS=="usb", KERNEL=="ttyUSB[0-9]*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE=="0666", SYMLINK+="sensors/ftdi_%s{serial}"
+# udev rule for classic FTDI FT232 (and similar) devices.
+# Creates stable symlink: /dev/sensors/ftdi_<serial-number>
+#
+# After changes: sudo udevadm control --reload-rules && sudo udevadm trigger
+# Then unplug/replug the device.
+
+SUBSYSTEMS=="usb", KERNEL=="ttyUSB[0-9]*", \
+  ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", \
+  ENV{ID_MM_DEVICE_IGNORE}="1", \
+  MODE="0660", GROUP="dialout", \
+  SYMLINK+="sensors/ftdi_%s{serial}"
+
+# Optional latency tweak for some FTDI-based hardware (Dynamixel U2D2, motor controllers, etc.)
+# Uncomment the next line if you need lower latency:
+# SUBSYSTEMS=="usb", KERNEL=="ttyUSB[0-9]*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTR{device/latency_timer}="1"
+
+# Notes:
+# - ID_MM_DEVICE_IGNORE prevents ModemManager from grabbing the device.
+# - Prefer dialout group (safer). Add yourself: sudo usermod -a -G dialout $USER
+# - The original broad 0666 is still possible by editing MODE.
+# - Many ROS projects now just use /dev/serial/by-id/usb-FTDI_... directly in launch files (no rule required).

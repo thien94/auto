@@ -1,1 +1,20 @@
-SUBSYSTEMS=="usb", KERNEL=="ttyACM[0-9]*", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE=="0666", SYMLINK+="sensors/acm_%s{serial}"
+# udev rule for STM32 / ACM devices (common for custom boards, VCP, etc.)
+# Creates stable symlink: /dev/sensors/acm_<serial-number>
+#
+# After changes: sudo udevadm control --reload-rules && sudo udevadm trigger
+# Then unplug/replug the device.
+
+SUBSYSTEMS=="usb", KERNEL=="ttyACM[0-9]*", \
+  ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", \
+  ENV{ID_MM_DEVICE_IGNORE}="1", \
+  MODE="0660", GROUP="dialout", \
+  SYMLINK+="sensors/acm_%s{serial}"
+
+# Notes:
+# - ID_MM_DEVICE_IGNORE prevents ModemManager from grabbing the device (very common source of trouble).
+# - MODE 0660 + GROUP dialout is safer than 0666. Make sure your user is in the dialout group:
+#     sudo usermod -a -G dialout $USER   (then log out and back in)
+# - If you really need world-writable for convenience in a lab, change to MODE="0666".
+# - For even more devices, add more ATTRS lines or use broader KERNEL=="ttyACM*" rules.
+# - Alternative (often sufficient, no custom rule needed): use the kernel-provided persistent names
+#   /dev/serial/by-id/usb-... or /dev/serial/by-path/...
