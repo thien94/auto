@@ -163,3 +163,7 @@ Major updates: autonomic rewrite + first-class ROS 1 + ROS 2 support, smarter wo
 Acknowledgement: Chen Chun-lin.
 
 If this saves you time in the lab, feel free to star/fork and contribute improvements.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
